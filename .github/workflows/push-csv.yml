@@ -1,0 +1,31 @@
+name: Auto Commit CSVs
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # Cada 10 minutos
+  workflow_dispatch:        # Permite activarlo manualmente desde GitHub
+
+jobs:
+  commit-csv:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "oriori[bot]"
+          git config --global user.email "bot@users.noreply.github.com"
+
+      - name: Commit CSV if changed
+        run: |
+          git add history/*.csv || true
+          if git diff --cached --quiet; then
+            echo "No hay cambios en CSVs"
+          else
+            git commit -m "🔁 Auto-commit CSV actualizado por bot"
+            git push origin main
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
