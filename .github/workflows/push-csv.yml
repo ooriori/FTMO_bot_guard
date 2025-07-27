@@ -2,8 +2,8 @@ name: Auto Commit CSVs
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # Cada 10 minutos
-  workflow_dispatch:        # Permite activarlo manualmente desde GitHub
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
 
 jobs:
   commit-csv:
@@ -20,7 +20,7 @@ jobs:
 
       - name: Commit CSV if changed
         run: |
-          git add history/*.csv || true
+          git add app/data/history/*.csv || true
           if git diff --cached --quiet; then
             echo "No hay cambios en CSVs"
           else
