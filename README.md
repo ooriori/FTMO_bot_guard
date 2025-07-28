@@ -100,9 +100,3 @@ Este bot no constituye asesoría financiera ni garantiza resultados. Úsese bajo
 
 ---
 
-### ✅ ¿Qué sigue?
-
-- ¿Quieres que te lo deje listo como `README.md` real y lo subamos con `autopush.sh`?
-- ¿Quieres agregar una sección de *pricing*, roadmap, o integración futura con trading real?
-
-Te puedo ayudar a dejarlo **corporativo**, para inversión o venta directa
