@@ -3,27 +3,24 @@ import time
 import os
 import csv
 from datetime import datetime
-
 from dotenv import load_dotenv
+
 load_dotenv()
 
-# Añadir ruta al directorio raíz para importar utils
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from utils.telegram import send
 from utils.prices import get_price
 
 SILENT_MODE = os.getenv("SILENT_MODE", "false").lower() == "true"
+DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 
-# Crear carpeta data si no existe
-if not os.path.exists("data"):
-    os.makedirs("data")
+if not os.path.exists(DATA_DIR):
+    os.makedirs(DATA_DIR)
 
-# Soporte multi-cripto
 cryptos = ["bitcoin", "ethereum", "solana", "dogecoin"]
 
 def basic_strategy(price):
-    """Estrategia de trading simple basada en umbrales"""
     if price < 29000:
         return "🟢 COMPRA"
     elif price > 30500:
@@ -32,8 +29,7 @@ def basic_strategy(price):
         return "⏸️ MANTENER"
 
 def save_to_csv(coin, price, signal):
-    """Guarda histórico de precios por moneda"""
-    file_path = f"data/history_{coin}.csv"
+    file_path = os.path.join(DATA_DIR, f"history_{coin}.csv")
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
     file_exists = os.path.isfile(file_path)
 
@@ -44,7 +40,6 @@ def save_to_csv(coin, price, signal):
         writer.writerow([timestamp, price, signal])
 
 def notify(message):
-    """Imprime y/o envía mensaje por Telegram"""
     print(message)
     if not SILENT_MODE:
         send(message)
@@ -65,12 +60,10 @@ def main():
                 continue
 
             signal = basic_strategy(price)
-            formatted_name = coin.upper()
-            notify(f"💹 {formatted_name}: {price:.2f} USD\n📊 Señal: {signal}")
+            notify(f"💹 {coin.upper()}: {price:.2f} USD\n📊 Señal: {signal}")
             save_to_csv(coin, price, signal)
 
         time.sleep(10)
 
 if __name__ == "__main__":
     main()
-

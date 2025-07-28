@@ -1,29 +1,23 @@
-# FTMO Crypto Trading Bot
+# 🛡️ FTMO Guard — Anti-liquidación para Traders
 
-Automatiza trading de criptomonedas en 2025. Modular, seguro y pensado para escalar a SaaS.
+FTMO Guard es un bot automatizado que monitorea en tiempo real los precios de criptomonedas y te alerta antes de situaciones críticas, ayudándote a evitar pérdidas severas en cuentas de fondeo como FTMO, MyForexFunds y otras.
 
-## 🚀 ¿Qué hace?
-- Opera de forma automática en exchanges.
-- Modular: agrega estrategias, exchanges y análisis fácilmente.
-- Seguro: variables de entorno para claves API.
+---
 
-## 📦 Estructura básica
+##  ¿Qué hace?
 
-\`\`\`
-ftmo_bot/
-├── main.py
-└── src/
-    ├── exchange.py
-    └── strategy.py
-\`\`\`
+- Monitorea los precios de BTC, ETH, SOL, DOGE.
+- Aplica una estrategia básica de compra/venta.
+- Guarda historial por criptomoneda.
+- Te envía alertas por Telegram.
+- Funciona en segundo plano (modo silencioso o normal).
 
-## 🛡️ Licencia
+---
 
-El uso comercial, la copia o distribución del código fuera de este repositorio está prohibida. Solo contribuciones permitidas bajo supervisión.
+## ⚙️ Instalación rápida
 
-## 🏆 ¿Cómo contribuir?
-Lee [CONTRIBUTING.md](CONTRIBUTING.md).
+### 1. Clona el repositorio:
 
-## 🎯 Futuro SaaS
-
-Este proyecto busca ser la base de un SaaS de trading algorítmico y signals. ¡Súmate a la comunidad!
+```bash
+git clone https://github.com/ooriori/FTMO_bot_guard.git
+cd FTMO_bot_guard
