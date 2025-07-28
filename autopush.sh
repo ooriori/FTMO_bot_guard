@@ -12,7 +12,7 @@ if git diff --quiet && git diff --cached --quiet; then
 fi
 
 # Mensaje de commit automático si no se proporciona uno
-COMMIT_MSG=${1:-"🚀 AutoPush FTMO $(date '+%Y-%m-%d %H:%M:%S')"}
+COMMIT_MSG=${1:-" AutoPush FTMO $(date '+%Y-%m-%d %H:%M:%S')"}
 
 echo "➕ Añadiendo archivos..."
 git add .
